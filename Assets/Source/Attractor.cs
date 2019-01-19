@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Attractor : MonoBehaviour
 {
-    public Rigidbody rigidbody;
+   private Rigidbody rb;
 
-    const float G = 6.6740831e-11F;
+    void Start ()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    const float G = 6.6740831e0F;
 
     static List<Attractor> attractors;
 
@@ -36,12 +41,12 @@ public class Attractor : MonoBehaviour
     }
     void Attract(Attractor otherAttractor)
     {
-	Rigidbody otherRigidbody = otherAttractor.rigidbody;
-	Vector3 direction = rigidbody.position - otherRigidbody.position;
+	Rigidbody otherRigidbody = otherAttractor.rb;
+	Vector3 direction = rb.position - otherRigidbody.position;
 
 	float distance = direction.magnitude;
 	
-	float forceMagnitude =	G * (rigidbody.mass * otherRigidbody.mass) / Mathf.Pow(distance, 2);
+	float forceMagnitude =	G * (rb.mass * otherRigidbody.mass) / Mathf.Pow(distance, 2);
 
 	Vector3 force = direction.normalized * forceMagnitude;
 
