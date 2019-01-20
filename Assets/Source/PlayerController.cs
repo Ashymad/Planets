@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
 	rb.AddTorque (rot * rotSpeed);
 
 	var diamondTransform = transform.GetChild(2).transform;
-	diamondTransform.localPosition = diamondTransform.localPosition.magnitude * rb.velocity.normalized;
+	diamondTransform.localPosition = diamondTransform.localPosition.magnitude * transform.InverseTransformDirection(rb.velocity).normalized;
 	diamondTransform.LookAt(transform);
     }
 }
