@@ -13,8 +13,11 @@ public class CameraController : MonoBehaviour
 	float scroll = Input.GetAxis("Mouse ScrollWheel");
 	this.transform.position += this.transform.forward*scroll*scrollModifier;
 	var crosshairTransform = transform.parent.GetChild(1).transform;
+	var diamondTransform = transform.parent.GetChild(2).transform;
 	crosshairTransform.localScale -= Vector3.one*scroll*scrollModifier*UIScale;
-	crosshairTransform.position -= this.transform.parent.forward*scroll*scrollModifier;
+	diamondTransform.localScale -= Vector3.one*scroll*scrollModifier*UIScale;
+	crosshairTransform.localPosition -= crosshairTransform.forward*scroll*scrollModifier;
+	diamondTransform.localPosition -= diamondTransform.forward*scroll*scrollModifier;
 
 	if(Input.GetMouseButton(2))
 	{

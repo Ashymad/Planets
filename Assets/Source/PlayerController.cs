@@ -57,5 +57,9 @@ public class PlayerController : MonoBehaviour
 	rot += -transform.forward * Input.GetAxis("Depthical2");
 
 	rb.AddTorque (rot * rotSpeed);
+
+	var diamondTransform = transform.GetChild(2).transform;
+	diamondTransform.localPosition = diamondTransform.localPosition.magnitude * rb.velocity.normalized;
+	diamondTransform.LookAt(transform);
     }
 }
