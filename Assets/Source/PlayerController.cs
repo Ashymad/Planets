@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
 	ps.enableEmission = verticalAxis > 0;
 
-	Vector3 move = transform.forward *verticalAxis;
+	Vector3 move = transform.forward*2*verticalAxis;
 	move += transform.right * Input.GetAxis ("Horizontal");
 	move += transform.up * Input.GetAxis("Depthical");
 
