@@ -11,7 +11,7 @@ public class Attractor : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    const float G = 6.6740831e0F;
+    const float G = 6.6740831e-0F;
 
     static List<Attractor> attractors;
 
