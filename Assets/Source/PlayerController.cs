@@ -6,15 +6,19 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 1F;
     public float rotSpeed = 0.01F;
+    public float volumeStep = 0.1F;
 
     private Rigidbody rb;
     private ParticleSystem ps;
+    private AudioSource aso;
 
     void Start ()
     {
 	rb = GetComponent<Rigidbody>();
 	ps = GetComponent<ParticleSystem>();
+	aso = GetComponent<AudioSource>();
 	ps.enableEmission = false;
+	aso.volume = 0;
     }
 
     void FixedUpdate()
@@ -22,6 +26,25 @@ public class PlayerController : MonoBehaviour
 	var verticalAxis = Input.GetAxis ("Vertical");
 
 	ps.enableEmission = verticalAxis > 0;
+	if (verticalAxis > 0 && !aso.isPlaying)
+	{
+	    aso.Play();
+	}
+	else if (verticalAxis > 0 && aso.isPlaying && aso.volume < 1)
+	{
+	    aso.volume += Time.fixedDeltaTime*volumeStep;
+	}
+	else if (verticalAxis <= 0 && aso.isPlaying)
+	{
+	    if (aso.volume >= Time.fixedDeltaTime*volumeStep)
+	    {
+		aso.volume -= Time.fixedDeltaTime*volumeStep;
+	    }
+	    else
+	    {
+		aso.Stop();
+	    }
+	}
 
 	Vector3 move = transform.forward*2*verticalAxis;
 	move += transform.right * Input.GetAxis ("Horizontal");
