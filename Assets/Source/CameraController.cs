@@ -32,10 +32,8 @@ public class CameraController : MonoBehaviour
 	    transform.RotateAround(transform.parent.position, transform.right, -mouseXY.y*mouseModifier);
 	    crosshairTransform.RotateAround(transform.position, transform.up, -mouseXY.x*mouseModifier);
 	    crosshairTransform.RotateAround(transform.position, transform.right, mouseXY.y*mouseModifier);
-	    crosshairTransform.LookAt(transform);
 	    diamondTransform.RotateAround(transform.position, transform.up, -mouseXY.x*mouseModifier);
 	    diamondTransform.RotateAround(transform.position, transform.right, mouseXY.y*mouseModifier);
-	    diamondTransform.LookAt(transform);
 	}
     }
 }
