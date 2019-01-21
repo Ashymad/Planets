@@ -5,11 +5,7 @@
 [Bb]uilds/
 [Ll]ogs/
 
-[Aa]ssets/*
-![Aa]ssets/Scenes/
-![Aa]ssets/Source/
-![Aa]ssets/Materials/
-![Aa]ssets/Sounds/
+[Aa]ssets/Store/
 
 # Visual Studio cache directory
 .vs/
