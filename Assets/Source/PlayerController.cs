@@ -9,23 +9,27 @@ public class PlayerController : MonoBehaviour
     public float volumeStep = 0.1F;
 
     private Rigidbody rb;
-    private ParticleSystem ps;
+    private ParticleSystem.EmissionModule em;
     private AudioSource aso;
+    private Transform diamondTransform;
+    private Transform cameraTransform;
 
     void Start ()
     {
 	rb = GetComponent<Rigidbody>();
-	ps = GetComponent<ParticleSystem>();
+	em = GetComponent<ParticleSystem>().emission;
 	aso = GetComponent<AudioSource>();
-	ps.enableEmission = false;
+	em.enabled = false;
 	aso.volume = 0;
+	cameraTransform = transform.GetChild(0);
+	diamondTransform = cameraTransform.GetChild(1);
     }
 
     void FixedUpdate()
     {
 	var verticalAxis = Input.GetAxis ("Vertical");
 
-	ps.enableEmission = verticalAxis > 0;
+	em.enabled = verticalAxis > 0;
 	if (verticalAxis > 0 && !aso.isPlaying)
 	{
 	    aso.Play();
@@ -58,8 +62,7 @@ public class PlayerController : MonoBehaviour
 
 	rb.AddTorque (rot * rotSpeed);
 
-	var diamondTransform = transform.GetChild(2).transform;
-	diamondTransform.localPosition = diamondTransform.localPosition.magnitude * transform.InverseTransformDirection(rb.velocity).normalized;
-	diamondTransform.LookAt(transform);
+	diamondTransform.localPosition = diamondTransform.localPosition.magnitude * cameraTransform.InverseTransformDirection(rb.velocity).normalized;
+	diamondTransform.LookAt(cameraTransform);
     }
 }
