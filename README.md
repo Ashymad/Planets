@@ -13,3 +13,9 @@ To compile you will need:
 - [The planets models](https://assetstore.unity.com/packages/3d/poly-planets-34894)
 
 Or just download from the [releases](https://github.com/Ashymad/Planets/releases)
+
+How to play:
+
+- AWSDQE - Thrusters
+- JIKLUO - Rotation
+- Middle Button - scroll to zoom camera, press to rotate it
